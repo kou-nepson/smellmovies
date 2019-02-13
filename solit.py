@@ -41,6 +41,11 @@ for j in files:
         print(j)
 #        print(result)
         f.write(str(result)) # skip first \s
+        with open("data/"+str(j)+"/wakachi.txt","w") as f:
+            allreview = ""
+            allreview += str(result)
+with open("wakachi.txt", "w") as f:
+    f.write(allreview)
 
 #print(result[0])
 
