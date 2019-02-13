@@ -4,7 +4,7 @@ import re
 import requests
 from bs4 import BeautifulSoup
 
-url = 'https://filmarks.com/movies/7420'
+url = 'https://filmarks.com/movies/14348'
 bsURL = requests.get(url)
 soup = BeautifulSoup(bsURL.text, 'html.parser')
 review_texts = soup.select(".p-mark__review")
@@ -24,9 +24,13 @@ for zero in range(last_page_num):
     hoge_bsURL = requests.get(hoge_url)
     hoge_soup = BeautifulSoup(hoge_bsURL.text, 'html.parser')
     review_texts += hoge_soup.select(".p-mark__review")
+    print(zero)
+    print(hoge_url)
 print(str(review_texts))
 path = move_title
+os.makedirs('data')
 if os.path.exists(path) == False:
+    path = 'data/' + path
     os.makedirs(path)
 if os.path.exists(path) == True:
     print("すでに完了しています")
