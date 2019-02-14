@@ -34,16 +34,16 @@ m = MeCab.Tagger("-Owakati")
 
 for j in files:
     with open("data/"+str(j)+"/wakachi.txt","w") as f:
-        text1 = text.splitlines()
+        text1 = text.splitlines() #テキストが多すぎるとNoneになるのでそれを回避する記述
         result = ""
         for t in text1:
             result += m.parse(t)
         print(j)
 #        print(result)
         f.write(str(result)) # skip first \s
-        with open("data/"+str(j)+"/wakachi.txt","w") as f:
+        with open("data/"+str(j)+"/wakachi.txt","rb") as f:
             allreview = ""
-            allreview += str(result)
+            allreview += str(f.read())
 with open("wakachi.txt", "w") as f:
     f.write(allreview)
 
