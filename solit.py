@@ -13,6 +13,7 @@ path += "/data"
 files = os.listdir(path)
 print(files)
 files.pop(0) #.DS_Storeを削除
+m = MeCab.Tagger("-Owakati")
 for i in files:
     with open("data/"+str(i)+"/review.txt","rb") as f:
         binarydata = f.read()
@@ -29,18 +30,18 @@ for i in files:
        # text = re.sub(r'<div id="kashi_area" itemprop="text">', '', text)
         n.write(text)
         print(i)
-
-m = MeCab.Tagger("-Owakati")
-
-for j in files:
-    with open("data/"+str(j)+"/wakachi.txt","w") as f:
+    result = ""
+    with open("data/"+str(i)+"/wakachi.txt","w") as f:
         text1 = text.splitlines()
-        result = ""
         for t in text1:
             result += m.parse(t)
-        print(j)
 #        print(result)
         f.write(str(result)) # skip first \s
+#    with open("data/"+str(j)+"/wakachi.txt","rb") as f:
+ #       allreview = f.read()
+ #       alltext += allreview.decode('utf_8')
+  #  with open("wakachi.txt", "a" ) as f:
+   #     f.write(alltext)
 
 #print(result[0])
 
