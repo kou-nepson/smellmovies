@@ -14,6 +14,7 @@ files = os.listdir(path)
 print(files)
 files.pop(0) #.DS_Storeを削除
 m = MeCab.Tagger("-Owakati")
+allreview = ""
 for i in files:
     with open("data/"+str(i)+"/review.txt","rb") as f:
         binarydata = f.read()
@@ -37,12 +38,14 @@ for i in files:
             result += m.parse(t)
 #        print(result)
         f.write(str(result)) # skip first \s
+    allreview += result
 #    with open("data/"+str(j)+"/wakachi.txt","rb") as f:
  #       allreview = f.read()
  #       alltext += allreview.decode('utf_8')
   #  with open("wakachi.txt", "a" ) as f:
    #     f.write(alltext)
-
+with open("wakachi.txt", "w")as f:
+    f.write(allreview)
 #print(result[0])
 
 #sentences = word2vec.LineSentence("wakachi.txt")
